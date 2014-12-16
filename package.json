@@ -7,12 +7,14 @@
     "test": "gulp test"
   },
   "author": "Bryan Kizer",
-  "license": "ISC",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://belsrc@bitbucket.org/carvedcom/business-time.git"
   },
+  "engines": {
+    "node": ">=0.10.0"
+  }
   "devDependencies": {
     "chai": "^1.10.0",
     "gulp": "^3.8.10",
