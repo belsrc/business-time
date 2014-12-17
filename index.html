@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Business Time</h1><p>A simple module to help when working with business days.</p>
+<h4>Installing</h4><p>To install the latest release version:</p>
+<pre class="prettyprint source"><code>npm install business-time@&quot;&lt;=0.1.0&quot;</code></pre><p>To install the latest development version:</p>
+<pre class="prettyprint source"><code>npm install git+https://github.com/belsrc/business-time.git</code></pre><h4>License</h4><p>Business Time is copyright (c) 2014 Bryan Kizer and licensed under the MIT License.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+<h1>Testing TOC</h1><ul>
+<li><a href="#businesstime">BusinessTime</a><ul>
+<li><a href="#businesstime-holidaysforyear">holidaysForYear</a></li>
+<li><a href="#businesstime-holidaysforyearrange">holidaysForYearRange</a></li>
+<li><a href="#businesstime-businessdiff">businessDiff</a></li>
+<li><a href="#businesstime-businessdayfromdate">businessDayFromDate</a></li>
+<li><a href="#businesstime-add">add</a></li>
+<li><a href="#businesstime-subtract">subtract</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="businesstime"></a></p>
+<h1>BusinessTime</h1><p><a name="businesstime-holidaysforyear"></a></p>
+<h2>holidaysForYear</h2><p>should return an array.</p>
+<pre class="prettyprint source lang-js"><code>var actual = time.holidaysForYear(2014);
+assert.isArray(actual);</code></pre><p>should have correct number of holidays.</p>
+<pre class="prettyprint source lang-js"><code>var days = time.holidaysForYear(2014);
+var actual = days.length;
+var expected = 6;
+assert.strictEqual(expected, actual);</code></pre><p>days should be correct.</p>
+<pre class="prettyprint source lang-js"><code>var actual = time.holidaysForYear(2014);
+var expected = [
+  moment('2014-01-01', 'YYYY-MM-DD').toISOString(),
+  moment('2014-05-26', 'YYYY-MM-DD').toISOString(),
+  moment('2014-07-04', 'YYYY-MM-DD').toISOString(),
+  moment('2014-09-01', 'YYYY-MM-DD').toISOString(),
+  moment('2014-11-27', 'YYYY-MM-DD').toISOString(),
+  moment('2014-12-25', 'YYYY-MM-DD').toISOString()
+];
+assert.deepEqual(expected, actual);</code></pre><p><a name="businesstime-holidaysforyearrange"></a></p>
+<h2>holidaysForYearRange</h2><p>should return an array.</p>
+<pre class="prettyprint source lang-js"><code>var actual = time.holidaysForYearRange(2013, 2014);
+assert.isArray(actual);</code></pre><p>should have correct number of holidays.</p>
+<pre class="prettyprint source lang-js"><code>var days = time.holidaysForYearRange(2013, 2014);
+var actual = days.length;
+var expected = 12;
+assert.strictEqual(expected, actual);</code></pre><p>should work in reverse.</p>
+<pre class="prettyprint source lang-js"><code>var days = time.holidaysForYearRange(2014, 2013);
+var actual = days.length;
+var expected = 12;
+assert.strictEqual(expected, actual);</code></pre><p>days should be correct.</p>
+<pre class="prettyprint source lang-js"><code>var actual = time.holidaysForYearRange(2013, 2014);
+var expected = [
+  moment('2013-01-01', 'YYYY-MM-DD').toISOString(),
+  moment('2013-05-27', 'YYYY-MM-DD').toISOString(),
+  moment('2013-07-04', 'YYYY-MM-DD').toISOString(),
+  moment('2013-09-09', 'YYYY-MM-DD').toISOString(),
+  moment('2013-11-28', 'YYYY-MM-DD').toISOString(),
+  moment('2013-12-25', 'YYYY-MM-DD').toISOString(),
+  moment('2014-01-01', 'YYYY-MM-DD').toISOString(),
+  moment('2014-05-26', 'YYYY-MM-DD').toISOString(),
+  moment('2014-07-04', 'YYYY-MM-DD').toISOString(),
+  moment('2014-09-01', 'YYYY-MM-DD').toISOString(),
+  moment('2014-11-27', 'YYYY-MM-DD').toISOString(),
+  moment('2014-12-25', 'YYYY-MM-DD').toISOString()
+];
+assert.deepEqual(expected, actual);</code></pre><p><a name="businesstime-businessdiff"></a></p>
+<h2>businessDiff</h2><p>result should be a number.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-11-2014', 'MM-DD-YYYY');
+var stop = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDiff(start, stop);
+assert.isNumber(actual);</code></pre><p>should not include weekends.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-11-2014', 'MM-DD-YYYY');
+var stop = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDiff(start, stop);
+var expected = 3;
+assert.strictEqual(expected, actual);</code></pre><p>should skip to first week day.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-13-2014', 'MM-DD-YYYY');
+var stop = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDiff(start, stop);
+var expected = 2;
+assert.strictEqual(expected, actual);</code></pre><p>should skip holidays.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var stop = moment('12-26-2014', 'MM-DD-YYYY');
+var actual = time.businessDiff(start, stop);
+var expected = 1;
+assert.strictEqual(expected, actual);</code></pre><p>should work in reverse.</p>
+<pre class="prettyprint source lang-js"><code>var stop = moment('12-11-2014', 'MM-DD-YYYY');
+var start = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDiff(start, stop);
+var expected = 3;
+assert.strictEqual(expected, actual);</code></pre><p><a name="businesstime-businessdayfromdate"></a></p>
+<h2>businessDayFromDate</h2><p>should be an object.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDayFromDate(3, start);
+assert.isObject(actual);</code></pre><p>should skip weekends.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-16-2014', 'MM-DD-YYYY');
+var actual = time.businessDayFromDate(3, start);
+var expected = moment('12-11-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should skip holidays.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-26-2013', 'MM-DD-YYYY');
+var actual = time.businessDayFromDate(1, start);
+var expected = moment('12-24-2013', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should add days.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2013', 'MM-DD-YYYY');
+var actual = time.businessDayFromDate(1, start, true);
+var expected = moment('12-26-2013', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p><a name="businesstime-add"></a></p>
+<h2>add</h2><p>should correctly handle days.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-17-2014', 'MM-DD-YYYY');
+var actual = time.add(1, 'day', start);
+var expected = moment('12-18-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should correctly handle weeks.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-17-2014', 'MM-DD-YYYY');
+var actual = time.add(1, 'week', start);
+var expected = moment('12-24-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should correctly handle months.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('11-17-2014', 'MM-DD-YYYY');
+var actual = time.add(1, 'month', start);
+var expected = moment('12-17-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should be an object.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var actual = time.add(1, 'month', start);
+assert.isObject(actual);</code></pre><p>should continue past weekends.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var actual = time.add(3, 'days', start);
+var expected = moment('12-29-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should continue past holidays.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var actual = time.add(1, 'day', start);
+var expected = moment('12-26-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p><a name="businesstime-subtract"></a></p>
+<h2>subtract</h2><p>should correctly handle days.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-17-2014', 'MM-DD-YYYY');
+var actual = time.subtract(1, 'day', start);
+var expected = moment('12-16-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should correctly handle weeks.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-17-2014', 'MM-DD-YYYY');
+var actual = time.subtract(1, 'week', start);
+var expected = moment('12-10-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should correctly handle months.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('11-17-2014', 'MM-DD-YYYY');
+var actual = time.subtract(1, 'month', start);
+var expected = moment('10-17-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should be an object.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var actual = time.subtract(1, 'month', start);
+assert.isObject(actual);</code></pre><p>should continue past weekends.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-24-2014', 'MM-DD-YYYY');
+var actual = time.subtract(3, 'days', start);
+var expected = moment('12-19-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre><p>should continue past holidays.</p>
+<pre class="prettyprint source lang-js"><code>var start = moment('12-26-2014', 'MM-DD-YYYY');
+var actual = time.subtract(1, 'day', start);
+var expected = moment('12-24-2014', 'MM-DD-YYYY');
+assert.strictEqual(expected.format(), actual.format());</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BusinessTime.html">BusinessTime</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Wed Dec 17 2014 11:36:13 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
