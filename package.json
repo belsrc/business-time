@@ -4,17 +4,16 @@
   "description": "Various methods for figuring business days",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "node node_modules/mocha/bin/mocha --reporter spec --ui tdd --recursive test"
   },
   "author": "Bryan Kizer",
-  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://belsrc@bitbucket.org/carvedcom/business-time.git"
+    "url": "https://github.com/belsrc/business-time.git"
   },
   "engines": {
     "node": ">=0.10.0"
-  }
+  },
   "devDependencies": {
     "chai": "^1.10.0",
     "gulp": "^3.8.10",
