@@ -17,6 +17,8 @@ To install the latest development version:
 
 ## Methods
 
+Full documentation can be found [here](http://belsrc.github.io/business-time/)
+
 #### .businessDiff(start Moment, stop Moment)
 ```javascript
 var start = moment('12-11-2014', 'MM-DD-YYYY');
