@@ -8,7 +8,7 @@ A simple module to help when working with business days.
 
 To install the latest release version:
 
-    npm install business-time@"<=0.2.0"
+    npm install --save business-time
 
 To install the latest development version:
 
