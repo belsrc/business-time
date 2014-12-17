@@ -5,7 +5,7 @@ var assert = chai.assert;
 var time = require('./../lib-cov/business-time');
 
 
-suite('TimeHelper', function() {
+suite('BusinessTime', function() {
 
   /**
   * helpers.time.holidaysForYear test suite
@@ -178,8 +178,124 @@ suite('TimeHelper', function() {
     test('should add days', function() {
       var start = moment('12-24-2013', 'MM-DD-YYYY');
 
-      var actual = time.businessDayFromDate(1, start, false);
+      var actual = time.businessDayFromDate(1, start, true);
       var expected = moment('12-26-2013', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+  });
+
+  /**
+  * helpers.time.add test suite
+  */
+  suite('add', function() {
+
+    test('should correctly handle days', function() {
+      var start = moment('12-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.add(1, 'day', start);
+      var expected = moment('12-18-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should correctly handle weeks', function() {
+      var start = moment('12-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.add(1, 'week', start);
+      var expected = moment('12-24-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should correctly handle months', function() {
+      var start = moment('11-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.add(1, 'month', start);
+      var expected = moment('12-17-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should be an object', function() {
+      var start = moment('12-24-2014', 'MM-DD-YYYY');
+      var actual = time.add(1, 'month', start);
+
+      assert.isObject(actual);
+    });
+
+    test('should continue past weekends', function() {
+      var start = moment('12-24-2014', 'MM-DD-YYYY');
+
+      var actual = time.add(3, 'days', start);
+      var expected = moment('12-29-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should continue past holidays', function() {
+      var start = moment('12-24-2014', 'MM-DD-YYYY');
+
+      var actual = time.add(1, 'day', start);
+      var expected = moment('12-26-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+  });
+
+  /**
+  * helpers.time.subtract test suite
+  */
+  suite('subtract', function() {
+
+    test('should correctly handle days', function() {
+      var start = moment('12-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.subtract(1, 'day', start);
+      var expected = moment('12-16-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should correctly handle weeks', function() {
+      var start = moment('12-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.subtract(1, 'week', start);
+      var expected = moment('12-10-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should correctly handle months', function() {
+      var start = moment('11-17-2014', 'MM-DD-YYYY');
+
+      var actual = time.subtract(1, 'month', start);
+      var expected = moment('10-17-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should be an object', function() {
+      var start = moment('12-24-2014', 'MM-DD-YYYY');
+      var actual = time.subtract(1, 'month', start);
+
+      assert.isObject(actual);
+    });
+
+    test('should continue past weekends', function() {
+      var start = moment('12-24-2014', 'MM-DD-YYYY');
+
+      var actual = time.subtract(3, 'days', start);
+      var expected = moment('12-19-2014', 'MM-DD-YYYY');
+
+      assert.strictEqual(expected.format(), actual.format());
+    });
+
+    test('should continue past holidays', function() {
+      var start = moment('12-26-2014', 'MM-DD-YYYY');
+
+      var actual = time.subtract(1, 'day', start);
+      var expected = moment('12-24-2014', 'MM-DD-YYYY');
 
       assert.strictEqual(expected.format(), actual.format());
     });
