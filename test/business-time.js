@@ -2,7 +2,13 @@ var chai = require('chai');
 var moment = require('moment');
 
 var assert = chai.assert;
-var time = require('./../lib-cov/business-time');
+try {
+  var time = require('./../lib-cov/business-time');
+} catch(e) {
+  if (e.code === 'MODULE_NOT_FOUND') {
+    var time = require('./../lib/business-time');
+  }
+}
 
 
 suite('BusinessTime', function() {
