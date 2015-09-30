@@ -158,10 +158,10 @@ suite('BusinessTime', function() {
     });
 
     test('should skip weekends', function() {
-      var start = moment('12-16-2014', 'MM-DD-YYYY');
+      var start = moment('12-15-2014', 'MM-DD-YYYY');
 
       var actual = time.businessDayFromDate(3, start);
-      var expected = moment('12-11-2014', 'MM-DD-YYYY');
+      var expected = moment('12-10-2014', 'MM-DD-YYYY');
 
       assert.strictEqual(expected.format(), actual.format());
     });

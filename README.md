@@ -47,6 +47,12 @@ var then = business-time.businessDayFromDate(3, 'days', start);
 ```
 
 
+## Running tests
+
+    npm test
+
+
+
 ## License
 
 Business Time is copyright (c) 2014 Bryan Kizer and licensed under the MIT License.
